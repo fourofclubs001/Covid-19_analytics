@@ -5,10 +5,10 @@ import numpy as np
 import math
 import csv
 
-country = 'Canada' # Canada, Italy, Spain
-data = 'cases' # cases or deaths
+country = input('country: ') # Canada, Italy, Spain
+data = input('cases or deaths: ') # cases or deaths
 
-epochs = 2
+epochs = int(input('epochs to train: '))
 lr = 1
 
 # Read data from csv
@@ -216,19 +216,19 @@ ax.text(critic_p_x[0] + critic_p_x[0]/25, maxlimy - 5*line_space, f'critic point
 ax.text(critic_p_x[0] + critic_p_x[0]/25, maxlimy - 6*line_space, f'last {data[:-1]}: {int(critic_p_x[4])}')
 
 # parameters text
-ax.text(critic_p_x[4] - 7*(critic_p_x[0]/25), maxlimy - 5*line_space, f'a: {round(a, 2)}')
-ax.text(critic_p_x[4] - 7*(critic_p_x[0]/25), maxlimy - 6*line_space, f'd: {round(d, 2)}')
-ax.text(critic_p_x[4] - 7*(critic_p_x[0]/25), maxlimy - 7*line_space, f'h: {round(h, 2)}')
-ax.text(critic_p_x[4] - 7*(critic_p_x[0]/25), maxlimy - 8*line_space, f'mse: {round(mse, 2)}')
+ax.text(critic_p_x[4] - (critic_p_x[4]/8), maxlimy - 5*line_space, f'a: {round(a, 2)}')
+ax.text(critic_p_x[4] - (critic_p_x[4]/8), maxlimy - 6*line_space, f'd: {round(d, 2)}')
+ax.text(critic_p_x[4] - (critic_p_x[4]/8), maxlimy - 7*line_space, f'h: {round(h, 2)}')
+ax.text(critic_p_x[4] - (critic_p_x[4]/8), maxlimy - 8*line_space, f'mse: {round(mse, 2)}')
 
 # title, labels and legends
-ax.set_title(f'Curve approximation from data ({country})')
+ax.set_title(f'{country} {data} curve approximation')
 ax.set_ylabel(f'new {data} per day')
 ax.set_xlabel('days')
 ax.legend()
 
 # save plot
-plt.savefig(f'{country} {data} curve')
+plt.savefig(f'{country}_{data}_curve')
 
 # show plot
 plt.show()
