@@ -8,7 +8,7 @@ import csv
 country = 'Canada' # Canada, Italy, Spain
 data = 'cases' # cases or deaths
 
-epochs = 10
+epochs = 2
 lr = 1
 
 # Read data from csv
@@ -182,46 +182,53 @@ for i in curve_x:
 
 	curve_y.append(curve_tf(a, d, h, i).numpy())
 
+# Plot plot
+fig, ax = plt.subplots()
+
 # data and curve
-plt.plot(curve_x, curve_y)
-plt.scatter(data_x, data_y, c = 'orange', s = max_values[1]/400)
+ax.plot(curve_x, curve_y, label = 'Aprox. curve')
+ax.scatter(data_x, data_y, c = 'orange', s = max_values[1]/400, label = data)
 
 # critic points
-plt.scatter(critic_p_x, critic_p_y, c = 'green')
+ax.scatter(critic_p_x, critic_p_y, c = 'green', label = 'critic points')
 
 for point in critic_p_x:
 
-	plt.plot([point,point], [-max_values[1]/49, max_values[1] + max_values[1]/49], c = [0,0,0,0.1])
+	ax.plot([point,point], [-max_values[1]/49, max_values[1] + max_values[1]/49], c = [0,0,0,0.1])
 
 for point in critic_p_y:
 
-	plt.plot([critic_p_x[0] - critic_p_x[0]/24, critic_p_x[-1] + critic_p_x[-1]/24], [point,point], c = [0,0,0,0.1])
+	ax.plot([critic_p_x[0] - critic_p_x[0]/24, critic_p_x[-1] + critic_p_x[-1]/24], [point,point], c = [0,0,0,0.1])
 
 # plot limits
-plt.xlim(critic_p_x[0] - critic_p_x[0]/25, critic_p_x[-1] + critic_p_x[-1]/25)
-plt.ylim(-max_values[1]/50, max_values[1] + max_values[1]/50)
+ax.set_xlim(critic_p_x[0] - critic_p_x[0]/25, critic_p_x[-1] + critic_p_x[-1]/25)
+ax.set_ylim(-max_values[1]/50, max_values[1] + max_values[1]/50)
 
 # plot text
 maxlimy = max_values[1] + max_values[1]/50
-line_space = maxlimy/10 
+line_space = maxlimy/20 
 
 # critic points texts
-plt.text(critic_p_x[0] + critic_p_x[0]/25, maxlimy - line_space, f'peak: {int(critic_p_x[2])}')
-plt.text(critic_p_x[0] + critic_p_x[0]/25, maxlimy - 2*line_space, f'critic point: {int(critic_p_x[1])}')
-plt.text(critic_p_x[0] + critic_p_x[0]/25, maxlimy - 3*line_space, f'critic point: {int(critic_p_x[3])}')
-plt.text(critic_p_x[0] + critic_p_x[0]/25, maxlimy - 4*line_space, f'first {data[:-1]}: {int(critic_p_x[0])}')
-plt.text(critic_p_x[0] + critic_p_x[0]/25, maxlimy - 5*line_space, f'last {data[:-1]}: {int(critic_p_x[4])}')
+ax.text(critic_p_x[0] + critic_p_x[0]/25, maxlimy - 2*line_space, f'first {data[:-1]}: {int(critic_p_x[0])}')
+ax.text(critic_p_x[0] + critic_p_x[0]/25, maxlimy - 3*line_space, f'critic point: {int(critic_p_x[1])}')
+ax.text(critic_p_x[0] + critic_p_x[0]/25, maxlimy - 4*line_space, f'peak: {int(critic_p_x[2])}')
+ax.text(critic_p_x[0] + critic_p_x[0]/25, maxlimy - 5*line_space, f'critic point: {int(critic_p_x[3])}')
+ax.text(critic_p_x[0] + critic_p_x[0]/25, maxlimy - 6*line_space, f'last {data[:-1]}: {int(critic_p_x[4])}')
 
 # parameters text
-plt.text(critic_p_x[4] - 8*(critic_p_x[0]/25), maxlimy - line_space, f'a: {round(a, 2)}')
-plt.text(critic_p_x[4] - 8*(critic_p_x[0]/25), maxlimy - 2*line_space, f'd: {round(d, 2)}')
-plt.text(critic_p_x[4] - 8*(critic_p_x[0]/25), maxlimy - 3*line_space, f'h: {round(h, 2)}')
-plt.text(critic_p_x[4] - 8*(critic_p_x[0]/25), maxlimy - 4*line_space, f'mse: {round(mse, 2)}')
+ax.text(critic_p_x[4] - 7*(critic_p_x[0]/25), maxlimy - 5*line_space, f'a: {round(a, 2)}')
+ax.text(critic_p_x[4] - 7*(critic_p_x[0]/25), maxlimy - 6*line_space, f'd: {round(d, 2)}')
+ax.text(critic_p_x[4] - 7*(critic_p_x[0]/25), maxlimy - 7*line_space, f'h: {round(h, 2)}')
+ax.text(critic_p_x[4] - 7*(critic_p_x[0]/25), maxlimy - 8*line_space, f'mse: {round(mse, 2)}')
 
-# title and labels
-plt.title('Curve approximation from data')
-plt.ylabel(f'new {data} per day')
-plt.xlabel('days')
+# title, labels and legends
+ax.set_title(f'Curve approximation from data ({country})')
+ax.set_ylabel(f'new {data} per day')
+ax.set_xlabel('days')
+ax.legend()
+
+# save plot
+plt.savefig(f'{country} {data} curve')
 
 # show plot
 plt.show()
