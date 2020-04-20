@@ -1,13 +1,11 @@
 # Covid-19_analytics
 
-==================================================================
-
 Approximate covid-19 new infected or deaths curve per day through existing data
 
 ## demo
 ![Canada cases approximate curve][logo]
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Spain cases approximate curve"
+[logo]: https://github.com/fourofclubs001/Covid-19_analytics/blob/master/Spain_cases_curve.png "Spain cases approximate curve"
 ## set up
 
 ### requierement
@@ -25,11 +23,11 @@ The data set being use is from the "European Centre for Disease Prevention and C
 ### Try it
 1. Clone this repository
 2. Run the program
-´´´Shell
+´´´
 python covid-19_analytics.py
 ´´´
 3. Insert desire country, cases or deaths data to analize, and quantity of epochs to train the model. Ex:
-´´´Shell
+´´´
 country: Canada
 cases or deaths: cases
 epochs to train: 1000
