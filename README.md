@@ -23,15 +23,15 @@ The data set being use is from the "European Centre for Disease Prevention and C
 ### Try it
 1. Clone this repository
 2. Run the program
-'''
+```Shell
 python covid-19_analytics.py
-'''
+```
 3. Insert desire country, cases or deaths data to analize, and quantity of epochs to train the model. Ex:
-'''
+```Shell
 country: Canada
 cases or deaths: cases
 epochs to train: 1000
-'''
+```
 
 ## Abstract
 In terms of epidemic or pandemic situation, it is important for every government level(city, state and country) to make decisions based on how the situation will evolve.
