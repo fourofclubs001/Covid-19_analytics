@@ -228,7 +228,7 @@ ax.text(critic_p_x[4] - (critic_p_x[4]/8), maxlimy - 8*line_space, f'mse: {round
 ax.set_title(f'{country} {data} curve approximation')
 ax.set_ylabel(f'new {data} per day')
 ax.set_xlabel('days')
-ax.legend()
+ax.legend(loc = 'upper right')
 
 # save plot
 plt.savefig(f'{country}_{data}_curve')
