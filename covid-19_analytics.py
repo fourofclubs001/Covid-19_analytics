@@ -164,6 +164,9 @@ for point in critic_p_x:
 
 	critic_p_y.append(curve_tf(a, d, h, point).numpy())
 
+
+
+
 # Plot
 
 # Data organization
